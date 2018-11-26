@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Basketball_ASP.Models.Game>
+
+@{
+    ViewBag.Title = "Past Games";
+}
+
+<h2>Past Games</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.venue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.paid)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.date))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.venue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.paid)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.gameID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.gameID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.gameID })
+        </td>
+    </tr>
+}
+
+</table>
