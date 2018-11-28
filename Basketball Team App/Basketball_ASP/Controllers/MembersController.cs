@@ -37,7 +37,7 @@ namespace Basketball_ASP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AspNetUser aspNetUser = await db.AspNetUsers.FindAsync(id);
+            AspNetUser aspNetUser = await db1.AspNetUsers.FindAsync(id);
             if (aspNetUser == null)
             {
                 return HttpNotFound();
@@ -60,8 +60,8 @@ namespace Basketball_ASP.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.AspNetUsers.Add(aspNetUser);
-                await db.SaveChangesAsync();
+                db1.AspNetUsers.Add(aspNetUser);
+                await db1.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -75,7 +75,7 @@ namespace Basketball_ASP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AspNetUser aspNetUser = await db.AspNetUsers.FindAsync(id);
+            AspNetUser aspNetUser = await db1.AspNetUsers.FindAsync(id);
             if (aspNetUser == null)
             {
                 return HttpNotFound();
@@ -92,8 +92,8 @@ namespace Basketball_ASP.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(aspNetUser).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db1.Entry(aspNetUser).State = EntityState.Modified;
+                await db1.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(aspNetUser);
@@ -106,7 +106,7 @@ namespace Basketball_ASP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AspNetUser aspNetUser = await db.AspNetUsers.FindAsync(id);
+            AspNetUser aspNetUser = await db1.AspNetUsers.FindAsync(id);
             if (aspNetUser == null)
             {
                 return HttpNotFound();
@@ -119,9 +119,9 @@ namespace Basketball_ASP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(string id)
         {
-            AspNetUser aspNetUser = await db.AspNetUsers.FindAsync(id);
-            db.AspNetUsers.Remove(aspNetUser);
-            await db.SaveChangesAsync();
+            AspNetUser aspNetUser = await db1.AspNetUsers.FindAsync(id);
+            db1.AspNetUsers.Remove(aspNetUser);
+            await db1.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
