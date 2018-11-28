@@ -7,20 +7,9 @@ namespace Basketball_ASP.Models
 {
     public class ViewModel
     {
-        private List<Game> games;
-        private int myVar;
-
-        public List<Game> Games
-        {
-            get { return games; }
-            set { games = value; }
-        }
-
-        public int MyProperty
-        {
-            get { return myVar; }
-            set { myVar = value; }
-        }
-
+        public List<AspNetUser> AspNetUsers { get; set; }
+        public AspNetUser AspNetUser { get; set; }
+        public List<Game> Games { get; set; }
+        public Game Game { get; set; }
     }
 }

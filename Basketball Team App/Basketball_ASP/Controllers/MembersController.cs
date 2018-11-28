@@ -11,14 +11,23 @@ using Basketball_ASP.Models;
 
 namespace Basketball_ASP.Controllers
 {
+    [Authorize]
     public class MembersController : Controller
     {
         private Entities2 db = new Entities2();
+        private Entities1 db1 = new Entities1();
+        public ViewModel model = new ViewModel();
 
         // GET: Members
         public async Task<ActionResult> Index()
         {
-            return View(await db.AspNetUsers.ToListAsync());
+            AspNetUser aspNetUser = new AspNetUser();
+            Game game = new Game();
+
+            model.AspNetUsers = await db1.AspNetUsers.ToListAsync();
+            model.Games = await db.Games.ToListAsync();
+
+            return View(model);
         }
 
         // GET: Members/Details/5

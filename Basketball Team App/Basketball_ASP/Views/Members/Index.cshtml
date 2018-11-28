@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Basketball_ASP.Models.AspNetUser>
+﻿@using Basketball_ASP.Models
+@model ViewModel
 
 @{
     ViewBag.Title = "Members";
@@ -9,24 +10,24 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
+            @Html.DisplayNameFor(model => model.AspNetUser.PhoneNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            @Html.DisplayNameFor(model => model.AspNetUser.UserName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserRole)
+            @Html.DisplayNameFor(model => model.AspNetUser.UserRole)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TotalPaid)
+            @Html.DisplayNameFor(model => model.AspNetUser.TotalPaid)
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.AspNetUsers)
     {
         <tr>
             <td>
@@ -45,8 +46,12 @@
                 @{ decimal? totalSpent = 0;}
                 @foreach (Game g in Model.Games)
                 {
-
+                    if (g.paid == item.Email)
+                    {
+                        totalSpent += g.fee;
+                    }
                 }
+                @totalSpent
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
